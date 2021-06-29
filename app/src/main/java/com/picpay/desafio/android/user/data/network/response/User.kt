@@ -1,4 +1,4 @@
-package com.picpay.desafio.android.user.data.model
+package com.picpay.desafio.android.user.data.network.response
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName

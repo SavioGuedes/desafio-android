@@ -10,8 +10,8 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.picpay.desafio.android.BaseApplication
 import com.picpay.desafio.android.R
-import com.picpay.desafio.android.user.data.api.PicPayService
-import com.picpay.desafio.android.user.data.model.User
+import com.picpay.desafio.android.user.data.network.api.PicPayService
+import com.picpay.desafio.android.user.data.network.response.User
 import com.picpay.desafio.android.user.presentation.adapter.UserListAdapter
 import okhttp3.OkHttpClient
 import retrofit2.Call
