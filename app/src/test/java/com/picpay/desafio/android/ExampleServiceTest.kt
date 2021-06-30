@@ -22,7 +22,6 @@ class ExampleServiceTest {
         val expectedUsers = emptyList<UserResponse>()
 
         whenever(call.execute()).thenReturn(Response.success(expectedUsers))
-        whenever(api.getUsers()).thenReturn(call)
 
         // when
         val users = service.example()
