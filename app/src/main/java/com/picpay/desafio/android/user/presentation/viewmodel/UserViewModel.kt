@@ -34,6 +34,7 @@ class UserViewModel(private val getUserUseCase: GetUserUseCase) : ViewModel() {
             else {
                 _users.value = result
             }
+
             _loading.value = false
         }
     }
