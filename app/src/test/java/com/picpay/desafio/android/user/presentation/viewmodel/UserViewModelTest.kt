@@ -1,4 +1,4 @@
-package com.picpay.desafio.android.user.presentation
+package com.picpay.desafio.android.user.presentation.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
@@ -8,10 +8,9 @@ import com.nhaarman.mockitokotlin2.whenever
 import com.picpay.desafio.android.R
 import com.picpay.desafio.android.user.domain.model.User
 import com.picpay.desafio.android.user.domain.usecase.GetUserUseCase
-import com.picpay.desafio.android.user.presentation.viewmodel.UserViewModel
 import com.picpay.desafio.android.user.util.InstantCoroutineRule
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.test.runBlockingTest
+import kotlinx.coroutines.runBlocking
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -43,11 +42,11 @@ class UserViewModelTest {
     private lateinit var viewModel: UserViewModel
 
     @Test
-    fun `when getUsers returns not empty list then sets users LiveData`() = coroutineRule.runBlockingTest {
+    fun `when getUsers returns not empty list then sets users LiveData`() {
         val usersMock = listOf(
             User("https://randomuser.me/api/portraits/men/1.jpg", "Sandrine Spinka", 1, "Tod86")
         )
-        whenever( getUsersUseCase.execute() ) doReturn usersMock
+        whenever( runBlocking { getUsersUseCase.execute() } ) doReturn usersMock
 
         viewModel = UserViewModel(getUsersUseCase).apply {
             users.observeForever(usersLiveDataObserver)
@@ -60,8 +59,8 @@ class UserViewModelTest {
     }
 
     @Test
-    fun `when getUsers returns empty list then sets error LiveData`() = coroutineRule.runBlockingTest {
-        whenever( getUsersUseCase.execute() ) doReturn listOf()
+    fun `when getUsers returns empty list then sets error LiveData`() {
+        whenever( runBlocking { getUsersUseCase.execute() } ) doReturn listOf()
 
         viewModel = UserViewModel(getUsersUseCase).apply {
             error.observeForever(errorLiveDataObserver)
